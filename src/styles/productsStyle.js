@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Products = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
@@ -13,5 +12,4 @@ export const Products = styled.div`
     grid-gap: 50px 50px;
     margin: 5%;
     } */
-
 `;

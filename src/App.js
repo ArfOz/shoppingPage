@@ -4,16 +4,13 @@ import MyRouter from "./router/router";
 import ShoppingCartContextProvider from "./context/shoppingCartContext";
 import ProductsContextProvider from "./context/productsContext";
 
-
 function App() {
   return (
-  <ProductsContextProvider>
+    <ProductsContextProvider>
       <ShoppingCartContextProvider>
         <MyRouter />
-      </ShoppingCartContextProvider> 
-  </ProductsContextProvider>
- 
- 
+      </ShoppingCartContextProvider>
+    </ProductsContextProvider>
   );
 }
 
