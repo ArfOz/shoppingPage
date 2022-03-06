@@ -17,14 +17,12 @@ const CartItem = ({title,imgSrc, specPrice, stock, currency, amount, product}) =
     setTotalAmount(specPrice * (total-1))
   }
 
-
-
   const updateCart = () =>{
     if(total === 0){
       remove(product)
     }
     else{
-      quantity(product, {amount})
+      quantity(product, total)
     }
 
   }
@@ -39,12 +37,12 @@ const CartItem = ({title,imgSrc, specPrice, stock, currency, amount, product}) =
           <button onClick={()=> DecreaseItem()}>-</button>
           <>{ total}</>
           <button onClick={() => IncrementItem()}>+</button>
-          <button onClick={()=> updateCart(product, total)}>Güncelle</button>
+          <button onClick={()=> updateCart(product, amount)}>Güncelle</button>
         </IncDecButton>
-        <div>Tutar: {totalAmount} </div>
-        
+        <div>Tutar: {totalAmount} </div>        
 
     </ShoppingCard>
+
   )
 }
 

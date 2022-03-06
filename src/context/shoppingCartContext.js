@@ -4,14 +4,12 @@ import {ShoppingCartReducer, totalAmount} from "./shoppingCartReducer";
 export const ShoppingCartContext = createContext()
 
 const storage = localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
-console.log("storage", storage)
 const initialState = { cartItems: storage, ...totalAmount(storage)};
 
 const ShoppingCartContextProvider = ({children}) =>{
     const [state, dispatch] = useReducer(ShoppingCartReducer, initialState)
     
     const addCart = payload => {
-        console.log("addcart içi", payload)
         dispatch({type: "addCart", payload})
     }
 
@@ -24,9 +22,13 @@ const ShoppingCartContextProvider = ({children}) =>{
     const buy = payload =>{
         dispatch({type:"buy", payload})
     }
+    const checkout = () => {
+        console.log('CHECKOUT', state);
+        dispatch({type: 'checkout'})
+    }
 
     const contextValues = {
-        addCart, remove, quantity,buy, ...state
+        addCart, remove, quantity, checkout,buy, ...state
     }
 
     return (

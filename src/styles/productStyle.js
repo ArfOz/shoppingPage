@@ -28,6 +28,7 @@ export const StyledText = styled.p`
 export const StyledProdImage = styled.img`
     width: auto;
     height: 70%;
+    margin-top:4% ;
 `
 
 export const StyledPrice = styled.p`
@@ -79,6 +80,14 @@ export const StyledCardImage = styled.img`
     width: auto;
     margin:0 5%;
     height: 100%;
-    
 
+`
+export const StyledNavbar = styled.div `
+    display: flex ;
+    justify-content: space-around;
+  
+`
+export const StyledFavorite = styled.div`
+display: flex ;
+    justify-content: space-around;
 `

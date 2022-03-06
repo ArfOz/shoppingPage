@@ -5,8 +5,8 @@ const Storage = (cartItems) =>{
 export const totalAmount = (cartItems) =>{
     Storage(cartItems);
     let itemsCount = cartItems.reduce((total, product) => total + product.quantity, 0);
-    // let total = cartItems.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2);
-    return { itemsCount}
+    let total = cartItems.reduce((total, product) => total + product.special_price * product.quantity, 0).toFixed(2);
+    return { itemsCount, total}
 }
 
 export const ShoppingCartReducer = (state, action) => {
@@ -18,7 +18,6 @@ export const ShoppingCartReducer = (state, action) => {
                     quantity:1
                 })
             }
-            console.log("addcart", action.payload)
             return{
                 ...state,
                 ...totalAmount(state.cartItems),
@@ -32,13 +31,20 @@ export const ShoppingCartReducer = (state, action) => {
                 cartItems:[...state.cartItems.filter(item=> item.product_id !== action.payload.product_id)]
             }
         case "quantity":
-           console.log("arif", action.quantity)
-           const ozkan = state.cartItems.find(item =>item.product_id === action.payload.product_id)
-            ozkan.quantity = action.quantity.quant + ozkan.quantity
+            const quant = state.cartItems.filter(item =>item.product_id === action.payload.product_id)[0]
+            console.log("deneme", quant, action.quantity)
+            quant.quantity = action.quantity
+            console.log("özkan", quant.quantity)
+            // console.log("arif", state.cartItems[state.cartItems.findIndex(item => item.id === action.payload.id)].quantity)
             return{
                 ...state,
                 ...totalAmount(state.cartItems),
                 cartItems:[...state.cartItems]
+            }
+        case "checkout":
+            return{
+                cartItems: [],
+                ...totalAmount([]),
             }
 
         case "buy":

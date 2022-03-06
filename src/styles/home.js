@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
   display: grid;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 5fr;
   /* grid-gap: 50px 50px; */
   /* margin: 5%; */
 

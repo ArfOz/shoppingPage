@@ -1,9 +1,13 @@
 import React, {useContext, useState} from 'react'
-import {StyledCardWrapper, StyledText, StyledProdImage, StyledPrice, StyledQuantity, StyledSpecPrice, IncDecButton} from "../../styles/productStyle"
+import {StyledCardWrapper, StyledText, StyledProdImage, StyledPrice, StyledQuantity, StyledSpecPrice, IncDecButton, StyledFavorite} from "../../styles/productStyle"
 import { ShoppingCartContext } from '../../context/shoppingCartContext'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 export const SingleProduct = ({title,imgSrc, price, specPrice, stock, currency, product}) => {
-  const [quant, setQuant] = useState(0)
+  const [quant, setQuant] = useState(1)
 
   const { addCart, cartItems, quantity } = useContext(ShoppingCartContext)
 
@@ -17,7 +21,6 @@ export const SingleProduct = ({title,imgSrc, price, specPrice, stock, currency, 
   const added = (product) =>{
     const myItem = !! cartItems.find(item => item.product_id === product.product_id)
     return myItem
-
   }
   return (
     <StyledCardWrapper>
@@ -42,6 +45,14 @@ export const SingleProduct = ({title,imgSrc, price, specPrice, stock, currency, 
                 </button>
               </IncDecButton>
         }
+         <StyledFavorite>
+          <FormControlLabel
+            control={<Checkbox icon={<FavoriteBorder />} 
+                  checkedIcon={<Favorite />}
+              name="checkedH" />}
+          />
+          </StyledFavorite>
+  
   
     </StyledCardWrapper>
   )
