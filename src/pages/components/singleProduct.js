@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   StyledCardWrapper,
   StyledText,
@@ -25,7 +25,7 @@ export const SingleProduct = ({
   const [quant, setQuant] = useState(1);
 
   const { addCart, cartItems, quantity } = useContext(ShoppingCartContext);
-  const { favorite, favItems } = useContext(FavoriteCartContext);
+  const { favorite, remove, favItems } = useContext(FavoriteCartContext);
 
   const IncrementItem = () => {
     setQuant(quant + 1);
@@ -50,9 +50,13 @@ export const SingleProduct = ({
 
   const fav = (product) => {
     favorite(product);
-    LikedorNot(product);
     console.log("productssssssss", product);
   };
+  const removeFav = (product) => {
+    remove(product);
+    console.log("productssssssss", product);
+  };
+
   return (
     <StyledCardWrapper>
       <StyledProdImage src={imgSrc} alt={"OOOPS something went wrong..."} />
@@ -81,11 +85,10 @@ export const SingleProduct = ({
         </IncDecButton>
       )}
       <StyledFavorite>
-        {!LikedorNot(product) && (
+        {!LikedorNot(product) ? (
           <FcLikePlaceholder size={20} onClick={() => fav(product)} />
-        )}
-        {LikedorNot(product) && (
-          <FcLike size={20} onClick={() => fav(product)} />
+        ) : (
+          <FcLike size={20} onClick={() => removeFav(product)} />
         )}
       </StyledFavorite>
     </StyledCardWrapper>

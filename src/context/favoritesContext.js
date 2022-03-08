@@ -13,10 +13,14 @@ const FavoriteContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(FavoriteReducer, initialState);
 
   const favorite = (payload) => {
-    dispatch({ type: "favorite", payload });
+    dispatch({ type: "addFav", payload });
+  };
+  const remove = (payload) => {
+    dispatch({ type: "removeFav", payload });
   };
   const contextValues = {
     favorite,
+    remove,
     ...state,
   };
   return (

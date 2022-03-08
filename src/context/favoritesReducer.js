@@ -7,8 +7,7 @@ const Storage = (favItems) => {
 
 export const FavoriteReducer = (state, action) => {
   switch (action.type) {
-    case "favorite":
-      // İf it is not favorited
+    case "addFav":
       if (
         !state.favItems.find(
           (item) => item.product_id === action.payload.product_id
@@ -17,17 +16,26 @@ export const FavoriteReducer = (state, action) => {
         state.favItems.push({
           ...action.payload,
         });
-        console.log("beğendi");
-        Storage(state.favItems);
-        // if it is favorited
-      } else {
-        Storage(
+      }
+      return {
+        ...state,
+        ...Storage(state.favItems),
+        favItems: [...state.favItems],
+      };
+    case "removeFav":
+      return {
+        ...state,
+        ...Storage(
           state.favItems.filter(
             (item) => item.product_id !== action.payload.product_id
           )
-        );
-      }
-
+        ),
+        favItems: [
+          ...state.favItems.filter(
+            (item) => item.product_id !== action.payload.product_id
+          ),
+        ],
+      };
     default:
       return state;
   }
