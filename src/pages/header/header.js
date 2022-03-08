@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { StyledNavbar } from '../../styles/productStyle';
+import React from "react";
+import { Link } from "react-router-dom";
+import { StyledNavbar } from "../../styles/productStyle";
 
 export const Header = () => {
   return (
@@ -8,7 +8,6 @@ export const Header = () => {
       <Link to="/">Home Page</Link>
       <Link to="/cart">Cart Page</Link>
       <Link to="/liked">Favorites Pages</Link>
-
     </StyledNavbar>
-  )
-}
+  );
+};

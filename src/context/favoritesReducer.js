@@ -1,16 +1,33 @@
-const Storage = (cartItems) => {
+const Storage = (favItems) => {
   localStorage.setItem(
-    "favorites",
-    JSON.stringify(cartItems.length > 0 ? cartItems : [])
+    "favorite",
+    JSON.stringify(favItems.length > 0 ? favItems : [])
   );
 };
 
 export const FavoriteReducer = (state, action) => {
   switch (action.type) {
-    case "add":
-      console.log("add", action.payload);
-    case "remove":
-      console.log("remove", action.payload);
+    case "favorite":
+      // İf it is not favorited
+      if (
+        !state.favItems.find(
+          (item) => item.product_id === action.payload.product_id
+        )
+      ) {
+        state.favItems.push({
+          ...action.payload,
+        });
+        console.log("beğendi");
+        Storage(state.favItems);
+        // if it is favorited
+      } else {
+        Storage(
+          state.favItems.filter(
+            (item) => item.product_id !== action.payload.product_id
+          )
+        );
+      }
+
     default:
       return state;
   }

@@ -4,10 +4,8 @@ import { HomeWrapper } from "../../styles/home";
 function Home() {
   return (
     <HomeWrapper>
-        <ProductPage />
+      <ProductPage />
     </HomeWrapper>
-   
-    
   );
 }
 
